@@ -1,4 +1,2 @@
 #!/bin/bash
-
-print("This is Python. baby")
-
+python3 $PYFILE
