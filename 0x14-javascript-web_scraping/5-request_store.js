@@ -2,22 +2,17 @@
 
 const request = require('request');
 const fs = require('fs');
-
 const url = process.argv[2];
-const filePath = process.argv[3];
+const file = process.argv[3];
 
-request.get(url, { encoding: 'utf-8' }, (error, response, body) => {
+request(url, (error, response, body) => {
   if (error) {
-    console.error(error);
+    console.log(error);
   } else {
-    if (response.statusCode === 200) {
-      fs.writeFile(filePath, body, 'utf-8', (err) => {
-        if (err) {
-          console.error(err);
-        }
-      });
-    } else {
-      console.log(`Error: ${response.statusCode}`);
-    }
+    fs.writeFile(file, body, 'utf8', (error) => {
+      if (error) {
+        console.log(error);
+      }
+    });
   }
 });
